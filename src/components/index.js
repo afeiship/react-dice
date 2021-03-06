@@ -1,4 +1,4 @@
-import noop from '@feizheng/noop';
+import noop from '@jswork/noop';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
@@ -34,35 +34,30 @@ export default class ReactDice extends Component {
      */
     onChange: PropTypes.func,
     /**
+     * If dice can be click.
+     */
+    disabled: PropTypes.bool,
+    /**
      * The dice rotate speed.
      */
     duration: PropTypes.number,
     /**
      * The timeout timing.
      */
-    timeout: PropTypes.number,
-    /**
-     * If dice is rotating.
-     */
-    animating: PropTypes.bool,
-    /**
-     * If dice can be click.
-     */
-    clickable: PropTypes.bool
+    timeout: PropTypes.number
   };
 
   static defaultProps = {
-    value: 0,
-    animating: false,
-    clickable: false,
+    value: 1,
+    onChange: noop,
+    disabled: false,
     duration: 500,
-    timeout: 2000,
-    onChange: noop
+    timeout: 2000
   };
 
   get src() {
     const { value } = this.state;
-    return DICE_ASSESTS[value];
+    return DICE_ASSESTS[value - 1];
   }
 
   get running() {
@@ -71,33 +66,32 @@ export default class ReactDice extends Component {
 
   constructor(inProps) {
     super(inProps);
-    const { value, animating } = inProps;
+    const { value } = inProps;
     this.timer = null;
-    this.state = {
-      value,
-      animating
-    };
+    this.state = { value, animating: false };
   }
 
   shouldComponentUpdate(inProps) {
-    const { animating, value } = inProps;
+    const { value } = inProps;
     this.props.value !== value && this.setState({ value });
-    !animating && this.stop();
-    animating && this.start();
     return true;
   }
 
+  componentWillUnmount() {
+    setTimeout(this.timer);
+    this.stop();
+    this.timer = null;
+  }
+
   handleClick = () => {
-    const { clickable } = this.props;
-    clickable && this.start();
+    const { disabled } = this.props;
+    !disabled && this.start();
   };
 
   start() {
     const { timeout } = this.props;
     if (this.running) return;
-    this.setState({ animating: true }, () => {
-
-    });
+    this.setState({ animating: true }, () => {});
     this.timer = setTimeout(() => {
       this.stop();
     }, timeout);
@@ -105,7 +99,7 @@ export default class ReactDice extends Component {
 
   stop() {
     const { onChange } = this.props;
-    const value = random();
+    const value = random() + 1;
     this.timer && clearTimeout(this.timer);
     this.setState({ animating: false, value });
     onChange({ target: { value } });

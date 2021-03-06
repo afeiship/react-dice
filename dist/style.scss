@@ -1,5 +1,31 @@
 $react-dice-options: () !default;
 
 .react-dice {
-  // your styles
+  @keyframes react-dice-play {
+    100% {
+      background-position: -1012px;
+    }
+  }
+
+  width: 126.5px;
+  height: 120px;
+  cursor: pointer;
+  transition: opacity 0.3s;
+  > img {
+    width: 100%;
+  }
+
+  &:active {
+    opacity: 0.8;
+  }
+
+  &.is-animating {
+    background: url(https://upload-images.jianshu.io/upload_images/2110669-a93a586b66fc2659.png);
+    animation: react-dice-play 0.5s steps(8) infinite;
+    background-size: cover;
+
+    > img {
+      display: none;
+    }
+  }
 }
