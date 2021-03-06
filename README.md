@@ -43,7 +43,7 @@ npm install -S @jswork/react-dice
 
   class App extends React.Component {
     state = {
-      value: 0
+      value: 3
     };
 
     handleChange = (e) => {
@@ -55,10 +55,10 @@ npm install -S @jswork/react-dice
         <ReactDemokit
           className="p-3 app-container"
           url="https://github.com/afeiship/react-dice">
-          <h1 class="title">骰子</h1>
-          <h2 class="subtitle">😎点击开始玩吧~</h2>
+          <h1 className="title">骰子</h1>
+          <h2 className="subtitle">😎点击开始玩吧~</h2>
           <div className="box">
-            <ReactDice clickable onChange={this.handleChange} />
+            <ReactDice value={this.state.value} onChange={this.handleChange} />
           </div>
 
           <h1 className="text-center text-white">
