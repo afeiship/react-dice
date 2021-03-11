@@ -5,12 +5,12 @@ import React, { Component } from 'react';
 
 const CLASS_NAME = 'react-dice';
 const DICE_ASSESTS = [
-  'https://upload-images.jianshu.io/upload_images/2110669-06a5cd55a35cd125.png',
-  'https://upload-images.jianshu.io/upload_images/2110669-c7bb5fb773695de5.png',
-  'https://upload-images.jianshu.io/upload_images/2110669-d233d140403f6ad0.png',
-  'https://upload-images.jianshu.io/upload_images/2110669-e2f5ffb218a01506.png',
-  'https://upload-images.jianshu.io/upload_images/2110669-fd1068db6222d78a.png',
-  'https://upload-images.jianshu.io/upload_images/2110669-7cc2d3d4e16fdc18.png'
+  'https://course-assets.saybot.net/aric/assets/images/2110669-06a5cd55a35cd125.png',
+  'https://course-assets.saybot.net/aric/assets/images/2110669-c7bb5fb773695de5.png',
+  'https://course-assets.saybot.net/aric/assets/images/2110669-d233d140403f6ad0.png',
+  'https://course-assets.saybot.net/aric/assets/images/2110669-e2f5ffb218a01506.png',
+  'https://course-assets.saybot.net/aric/assets/images/2110669-fd1068db6222d78a.png',
+  'https://course-assets.saybot.net/aric/assets/images/2110669-7cc2d3d4e16fdc18.png'
 ];
 
 const random = () => {
